@@ -1,0 +1,13 @@
+{
+  "spec_dir": "spec",
+  "spec_files": [
+    "users/**/*.spec.?(m)js",
+    "reports/**/*.spec.?(m)js",
+    "urls/**/*.spec.?(m)js"
+  ],
+  "helpers": ["helpers/**/*.?(m)js"],
+  "env": {
+    "stopSpecOnExpectationFailure": false,
+    "random": true
+  }
+}

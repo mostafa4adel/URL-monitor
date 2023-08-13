@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  beassesment:
+    image: beassesment
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3000:3000
+      - 9229:9229
+    depends_on:
+      - mongodb
+    command: ['node', '--inspect=0.0.0.0:9229', './src/server.js']

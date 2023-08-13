@@ -1,0 +1,277 @@
+swagger: '2.0'
+info:
+  title: URL Management API
+  version: 1.0.0
+basePath: /api
+schemes:
+  - http
+paths:
+  /urls/get_url:
+    post:
+      summary: Get URL
+      description: Retrieve details of a specific URL by providing its ID.
+      parameters:
+        - in: body
+          name: url_id
+          required: true
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+      responses:
+        '200':
+          description: URL details retrieved successfully
+        '400':
+          description: Invalid Data
+    security: 
+      - bearer: []
+      
+    securityDefinitions:
+      bearer:
+        type: apiKey
+        name: Authorization
+        in: header
+
+  /urls/delete_url:
+    post:
+      summary: Delete URL
+      description: Delete a URL by providing its ID.
+      parameters:
+        - in: body
+          name: url_id
+          required: true
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+      responses:
+        '200':
+          description: URL deleted successfully
+        '400':
+          description: Invalid Data
+    security: 
+      - bearer: []
+      
+    securityDefinitions:
+      bearer:
+        type: apiKey
+        name: Authorization
+        in: header
+
+  /urls/get_all_urls:
+    get:
+      summary: Get all URLs
+      description: Retrieve all URLs associated with the authenticated user.
+      responses:
+        '200':
+          description: URLs retrieved successfully
+        '400':
+          description: Invalid Data
+    security: 
+      - bearer: []
+      
+    securityDefinitions:
+      bearer:
+        type: apiKey
+        name: Authorization
+        in: header
+
+  /urls/create_url:
+    post:
+      summary: Create URL
+      description: Create a new URL for the authenticated user.
+      parameters:
+        - in: body
+          name: url
+          required: true
+          schema:
+            type: object
+            properties:# Define the expected properties for creating a URL here
+              # Example property:
+              # property_name:
+              #   type: string
+      responses:
+        '200':
+          description: URL created successfully
+        '400':
+          description: Invalid Data
+    security: 
+      - bearer: []
+      
+    securityDefinitions:
+      bearer:
+        type: apiKey
+        name: Authorization
+        in: header
+
+  /urls/add_tag:
+    post:
+      summary: Add Tag to URL
+      description: Add a tag to a specific URL by providing the URL's ID and the tag.
+      parameters:
+        - in: body
+          name: tag_data
+          required: true
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              tag:
+                type: string
+      responses:
+        '200':
+          description: Tag added successfully
+        '400':
+          description: Invalid Data
+    security: 
+      - bearer: []
+      
+    securityDefinitions:
+      bearer:
+        type: apiKey
+        name: Authorization
+        in: header
+
+  /urls/remove_tag:
+    post:
+      summary: Remove Tag from URL
+      description: Remove a tag from a specific URL by providing the URL's ID and the tag.
+      parameters:
+        - in: body
+          name: tag_data
+          required: true
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              tag:
+                type: string
+      responses:
+        '200':
+          description: Tag removed successfully
+        '400':
+          description: Invalid Data
+    security: 
+      - bearer: []
+      
+    securityDefinitions:
+      bearer:
+        type: apiKey
+        name: Authorization
+        in: header
+
+  /urls/update_url:
+    post:
+      summary: Update URL
+      description: Update the details of a specific URL by providing its ID and the new data.
+      parameters:
+        - in: body
+          name: url_data
+          required: true
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              # Define other properties for updating the URL here
+      responses:
+        '200':
+          description: URL updated successfully
+        '400':
+          description: Invalid Data
+    security: 
+      - bearer: []
+
+    securityDefinitions:
+      bearer:
+        type: apiKey
+        name: Authorization
+        in: header
+
+  /urls/set_notifier:
+    post:
+      summary: Set Notifier for URL
+      description: Set a notifier for a specific URL by providing the URL's ID and the notifier information.
+      parameters:
+        - in: body
+          name: notifier_data
+          required: true
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              notifier:
+                # Define the properties for the notifier here
+                type: object
+      responses:
+        '200':
+          description: Notifier set successfully
+        '400':
+          description: Invalid Data
+    security: 
+      - bearer: []
+      
+    securityDefinitions:
+      bearer:
+        type: apiKey
+        name: Authorization
+        in: header
+
+  /urls/start_monitoring:
+    post:
+      summary: Start Monitoring URL
+      description: Start monitoring a specific URL by providing its ID.
+      parameters:
+        - in: body
+          name: url_id
+          required: true
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+      responses:
+        '200':
+          description: Monitoring started successfully
+        '400':
+          description: Invalid Data
+    security: 
+      - bearer: []
+      
+    securityDefinitions:
+      bearer:
+        type: apiKey
+        name: Authorization
+        in: header
+
+  /urls/stop_monitoring:
+    post:
+      summary: Stop Monitoring URL
+      description: Stop monitoring a specific URL by providing its ID.
+      parameters:
+        - in: body
+          name: url_id
+          required: true
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+      responses:
+        '200':
+          description: Monitoring stopped successfully
+        '400':
+          description: Invalid Data
+    security: 
+      - bearer: []
+      
+    securityDefinitions:
+      bearer:
+        type: apiKey
+        name: Authorization
+        in: header

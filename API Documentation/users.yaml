@@ -1,0 +1,77 @@
+swagger: '2.0'
+info:
+  title: User Authentication API
+  version: 1.0.0
+basePath: /api
+schemes:
+  - http
+paths:
+  /users/verify_email/{token}:
+    get:
+      summary: Verify user email
+      description: Verifies a user's email based on the verification token.
+      parameters:
+        - name: token
+          in: path
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Email verified successfully
+        '400':
+          description: Invalid token provided
+        '404':
+          description: User not found
+    security: []
+  /users/register:
+    post:
+      summary: Register a new user
+      description: Registers a new user and sends a verification email.
+      parameters:
+        - in: body
+          name: user
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+      responses:
+        '200':
+          description: User registered successfully, verification email sent
+        '400':
+          description: Replicated User or Invalid Data
+    security: []
+  /users/login:
+    post:
+      summary: User login
+      description: Logs in a user and provides an authentication token.
+      parameters:
+        - in: body
+          name: credentials
+          required: true
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password:
+                type: string
+      responses:
+        '200':
+          description: User logged in successfully
+        '400':
+          description: Invalid Credentials
+        '403':
+          description: Email not verified
+    security: []
+
+# Define security definitions if needed
+securityDefinitions:
+  # Example definition for JWT authentication
+  token:
+    type: apiKey
+    name: Authorization
+    in: header

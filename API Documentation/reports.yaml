@@ -1,0 +1,33 @@
+swagger: '2.0'
+info:
+  title: Report API
+  version: 1.0.0
+basePath: /api
+schemes:
+  - http
+paths:
+  /reports/report:
+    get:
+      summary: Get Report by Tags
+      description: Retrieve a report based on specified tags. Requires authentication.
+      parameters:
+        - in: query
+          name: tags
+          required: true
+          type: array
+          items:
+            type: string
+      responses:
+        '200':
+          description: Report retrieved successfully
+        '400':
+          description: Invalid Data or Unauthorized
+    security:
+      - apiKey: [] # Requires the user token (apiKey) for authentication
+
+# security definitions
+securityDefinitions:
+  apiKey:
+    type: apiKey
+    in: header
+    name: Authorization # The header where the user token is included
